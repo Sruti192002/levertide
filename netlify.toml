@@ -1,0 +1,40 @@
+# Levertide — Netlify deploy config
+# Static site, no build step. Publish the repo root as-is.
+
+[build]
+  publish = "."
+  command = ""
+
+# ── Canonical host: redirect www → apex (matches <link rel="canonical">) ──
+[[redirects]]
+  from = "https://www.levertide.com/*"
+  to = "https://levertide.com/:splat"
+  status = 301
+  force = true
+
+# ── Security headers (applied site-wide) ──
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+# ── Long-cache static assets (filenames are stable; bump on change) ──
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# ── HTML should always revalidate ──
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

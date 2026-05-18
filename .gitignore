@@ -1,0 +1,16 @@
+.env
+.env.local
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+dist/
+.vercel
+.netlify
+
+# Manual-deploy build artifact (Netlify builds from source via Git)
+levertide-deploy.zip
+*.zip
+
+# Claude Code local harness config (not part of the site)
+.claude/
