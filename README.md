@@ -148,6 +148,33 @@ To deploy: drag the folder into Netlify, or connect the Git repo (it auto-detect
 Other hosts also work (Vercel, Cloudflare Pages, GitHub Pages, S3+CloudFront) —
 you'd swap `netlify.toml` for that platform's equivalent config.
 
+### Continuous deploy (Git → Netlify) — preferred
+
+This repo is connected to a **private GitHub repo** and Netlify deploys from it
+automatically. This replaces the error-prone manual zip upload (which once
+shipped a broken deploy missing `css/` and `js/`).
+
+**One-time Netlify link (web dashboard — needs your Netlify + GitHub login):**
+1. Netlify → the site → **Site configuration → Build & deploy → Continuous
+   deployment → Link repository** (or **Add new site → Import from an existing
+   project → GitHub**, then delete the old drag-drop site).
+2. Authorize Netlify's GitHub app and pick the private **`levertide`** repo.
+3. Confirm build settings — **Build command: empty**, **Publish directory: `.`**
+   (Netlify reads these from `netlify.toml` automatically).
+4. Deploy. Verify the live URL renders **styled** (CSS/JS resolve).
+
+**Ongoing workflow — every change is now:**
+```bash
+# edit files...
+git add -A
+git commit -m "Describe the change"
+git push          # Netlify auto-builds and deploys in ~1-2 min
+```
+
+No more zipping. `levertide-deploy.zip` is gitignored and kept only as a manual
+fallback. `gh` CLI (portable, `%LOCALAPPDATA%\Programs\gh-cli\bin`, on user
+PATH) was used to create the repo.
+
 ### Connecting the domain (levertide.com)
 
 Production domain is **levertide.com** (already set as `SITE_URL`, canonical, and
