@@ -18,7 +18,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <!-- Bump ?v= on every CSS/JS change so browsers fetch the new file
+       (assets are cached 1yr immutable via netlify.toml) -->
+  <link rel="stylesheet" href="css/styles.css?v=2" />
 </head>
 <body>
   <!-- ===== NAVBAR ===== -->
@@ -409,8 +411,7 @@
           Cal("init", "strategy-call", { origin: "https://app.cal.com" });
           Cal.ns["strategy-call"]("inline", {
             elementOrSelector: "#cal-booking",
-            // Replace "levertide/strategy-call" with your real Cal.com link
-            calLink: "levertide/strategy-call",
+            calLink: "sruti-sharma-95rqnm/discovery-call",
             layout: "month_view"
           });
           Cal.ns["strategy-call"]("ui", {
@@ -467,6 +468,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=2"></script>
 </body>
 </html>
