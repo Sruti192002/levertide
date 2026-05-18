@@ -12,7 +12,7 @@ automation systems for recruitment agencies (US · UK · Australia).
 ```
 levertide/
 ├── index.html        # Single-page site (all sections)
-├── css/styles.css     # Premium dark theme, gradients, animations, responsive
+├── css/styles.css     # Premium light theme, gradients, animations, responsive
 ├── js/main.js          # Navbar, mobile menu, scroll reveal, form handling
 ├── .env.example        # Environment variables (copy to .env)
 ├── .gitignore
@@ -41,7 +41,7 @@ No build step. It's static HTML/CSS/JS — open `index.html` or serve the folder
 
 Reference site **nisabms.com** was used to adopt proven conversion patterns: a
 standalone tech-stack logo band, a project-style "work wall", repeated booking
-CTAs, and scannable benefit cards — kept on our premium dark theme and without
+CTAs, and scannable benefit cards — kept on our premium light theme and without
 NISA's testimonials (we don't fabricate proof; the work wall is labeled "Sample build").
 
 ### Copy & positioning notes
@@ -208,18 +208,23 @@ Pre-launch checklist:
 
 ## 6. Design system reference
 
+Theme: **premium light** (white / soft-grey backgrounds, dark navy text).
+
 | Token | Value | Use |
 |-------|-------|-----|
-| `--bg` | `#070A12` | Page background |
-| `--brand` | `#6C8CFF` | Primary accent |
-| `--brand-2` | `#9C6CFF` | Gradient mid |
-| `--accent` | `#34E0C4` | Outcomes / success |
+| `--bg` | `#FFFFFF` | Page background |
+| `--bg-alt` | `#F5F7FB` | Alternating sections |
+| `--text` | `#0E1530` | Body / headings |
+| `--brand` | `#5468FF` | Primary accent |
+| `--brand-2` | `#8B5CF6` | Gradient mid |
+| `--accent` | `#0FB99B` | Outcomes / success |
 | `--grad` | blue → purple → teal | Buttons, headings, highlights |
 | Fonts | Space Grotesk (display), Inter (body) | — |
 
 Responsive: mobile-first, breakpoints at 960px and 760px.
-Animations: scroll-reveal via IntersectionObserver; respects
-`prefers-reduced-motion`.
+Animations: scroll-reveal (IntersectionObserver) + shimmering gradient
+text/buttons (`gradientShift`) + floating hero/CTA glows (`floatGlow`).
+All animation respects `prefers-reduced-motion`.
 
 ---
 
