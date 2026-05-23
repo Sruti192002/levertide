@@ -12,12 +12,12 @@
   --surface-2: #F0F3FA;
   --line:      rgba(16, 24, 48, 0.08);
   --line-2:    rgba(16, 24, 48, 0.16);
-  --text:      #0E1530;
+  --text:      #0E2247;
   --muted:     #5A6788;
-  --brand:     #5468FF;
-  --brand-2:   #8B5CF6;
+  --brand:     #1A8AFF;
+  --brand-2:   #2A5EE6;
   --accent:    #0FB99B;
-  --grad:      linear-gradient(120deg, #5468FF 0%, #8B5CF6 50%, #0FB99B 100%);
+  --grad:      linear-gradient(120deg, #1A8AFF 0%, #2A5EE6 55%, #0E2247 100%);
   --radius:    18px;
   --shadow:    0 22px 50px -22px rgba(40, 56, 120, 0.28);
   --maxw:      1180px;
@@ -105,12 +105,15 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 6px 24px -16px rgba(40, 56, 120, 0.4);
 }
 .nav__inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
-.brand { display: flex; align-items: center; gap: 10px; font-family: "Space Grotesk"; font-weight: 700; font-size: 1.2rem; }
-.brand__mark {
-  width: 26px; height: 26px; border-radius: 8px;
-  background: var(--grad);
-  box-shadow: 0 0 18px rgba(108, 140, 255, 0.6);
+.brand { display: inline-flex; align-items: center; gap: 10px; font-family: "Space Grotesk"; font-weight: 700; font-size: 1.2rem; }
+.brand__logo {
+  height: 44px; width: auto; display: block;
+  /* image-rendering hint for sharper raster scaling on HiDPI */
+  image-rendering: -webkit-optimize-contrast;
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
+.brand:hover .brand__logo { transform: translateY(-1px); filter: drop-shadow(0 4px 12px rgba(84, 104, 255, 0.25)); }
+.brand--footer .brand__logo { height: 50px; }
 .nav__links { display: flex; gap: 30px; }
 .nav__links a { color: var(--muted); font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
 .nav__links a:hover { color: var(--text); }
