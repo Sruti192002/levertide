@@ -52,6 +52,28 @@
   var y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();
 
+  /* VSL: lazy-load YouTube iframe only when the user clicks play.
+     Saves ~600 KB of YouTube JS on initial page load. */
+  document.querySelectorAll(".vsl__frame[data-yt]").forEach(function (frame) {
+    var play = frame.querySelector(".vsl__play");
+    if (!play) return;
+    play.addEventListener("click", function () {
+      var id = frame.getAttribute("data-yt");
+      var iframe = document.createElement("iframe");
+      iframe.src =
+        "https://www.youtube-nocookie.com/embed/" + id +
+        "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
+      iframe.title = "Levertide VSL";
+      iframe.allow =
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      iframe.setAttribute("allowfullscreen", "");
+      iframe.loading = "lazy";
+      iframe.className = "vsl__iframe";
+      frame.innerHTML = "";
+      frame.appendChild(iframe);
+    });
+  });
+
   /* Contact form — front-end handling.
      Wire ENDPOINT to your backend / form service (see ENV section in README). */
   var form = document.getElementById("contactForm");
