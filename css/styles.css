@@ -105,15 +105,34 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 6px 24px -16px rgba(40, 56, 120, 0.4);
 }
 .nav__inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
-.brand { display: inline-flex; align-items: center; gap: 10px; font-family: "Space Grotesk"; font-weight: 700; font-size: 1.2rem; }
+.brand { display: inline-flex; align-items: center; gap: 12px; font-family: "Space Grotesk"; font-weight: 700; font-size: 1.2rem; }
+/* Round icon-only crop from the top of the logo PNG.
+   The source image has the icon mark centered in the top portion
+   followed by wordmark + tagline. object-fit + object-position let
+   us show only the icon area inside a circular frame. */
 .brand__logo {
-  height: 44px; width: auto; display: block;
-  /* image-rendering hint for sharper raster scaling on HiDPI */
+  width: 44px;
+  height: 44px;
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 22%;   /* shifts visible area up to crop just the icon */
+  background: #FFFFFF;            /* keeps the white-bg PNG seamless on any backdrop */
+  box-shadow: 0 4px 14px -4px rgba(40, 56, 120, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   image-rendering: -webkit-optimize-contrast;
-  transition: transform 0.2s ease, filter 0.2s ease;
 }
-.brand:hover .brand__logo { transform: translateY(-1px); filter: drop-shadow(0 4px 12px rgba(84, 104, 255, 0.25)); }
-.brand--footer .brand__logo { height: 50px; }
+.brand:hover .brand__logo {
+  transform: translateY(-1px) scale(1.04);
+  box-shadow: 0 8px 22px -6px rgba(26, 138, 255, 0.4);
+}
+.brand--footer .brand__logo { width: 56px; height: 56px; }
+.brand__text {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700; font-size: 1.2rem;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
 .nav__links { display: flex; gap: 30px; }
 .nav__links a { color: var(--muted); font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
 .nav__links a:hover { color: var(--text); }
@@ -168,9 +187,63 @@ img { max-width: 100%; display: block; }
 .hero__trust { margin-top: 56px; color: var(--muted); font-size: 0.82rem; }
 .hero__trust span { display: block; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.72rem; }
 .hero__micro {
-  margin-top: 22px; color: var(--muted); font-size: 0.85rem;
-  letter-spacing: 0.01em;
+  margin-top: 14px; color: var(--muted); font-size: 0.88rem;
+  letter-spacing: 0.01em; font-style: italic;
 }
+.hero__trustline {
+  margin-top: 28px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.85rem; font-weight: 500;
+  color: var(--text); opacity: 0.7;
+}
+
+/* ---------- Problem section ---------- */
+.problem {
+  text-align: center;
+}
+.problem p {
+  font-size: 1.12rem; color: var(--muted);
+  max-width: 640px; margin: 0 auto 22px;
+  line-height: 1.65;
+}
+.problem__punch {
+  margin-top: 32px !important;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  color: var(--text) !important;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.25rem !important;
+  font-weight: 600;
+  line-height: 1.4 !important;
+}
+.problem__punch strong { color: var(--brand); }
+
+/* ---------- Coming Soon waitlist ---------- */
+.soon {
+  margin-top: 40px;
+  padding: 32px 36px;
+  border: 1px dashed rgba(26, 138, 255, 0.4);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at top right, rgba(26, 138, 255, 0.06), transparent 60%),
+    var(--surface);
+  text-align: center;
+}
+.soon__head {
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px; flex-wrap: wrap; margin-bottom: 12px;
+}
+.soon__tag {
+  display: inline-block;
+  font-size: 0.78rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--brand);
+  padding: 6px 14px; border-radius: 999px;
+  background: rgba(26, 138, 255, 0.1);
+  border: 1px solid rgba(26, 138, 255, 0.25);
+}
+.soon__head h3 { font-size: 1.35rem; }
+.soon p { color: var(--muted); font-size: 0.98rem; margin-bottom: 20px; max-width: 540px; margin-left: auto; margin-right: auto; }
 
 /* ---------- Hero offer block ---------- */
 .offer {
